@@ -1,0 +1,602 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Sistema de Estrelas */
+.stars {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    animation: cosmicTwinkle var(--duration) infinite ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.star:nth-child(3n) {
+    background: rgba(100, 200, 255, 0.9);
+    box-shadow: 0 0 25px rgba(100, 200, 255, 0.5);
+}
+
+.star.pulsar {
+    background: radial-gradient(circle, #00ff88 20%, transparent 70%);
+    animation: pulsarGlow 4s infinite;
+}
+
+.star.nebula {
+    background: linear-gradient(45deg, #00a3ff, #003366);
+    border-radius: 5px;
+    animation: nebulaFlow 8s infinite;
+}
+
+@keyframes cosmicTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+}
+
+@keyframes pulsarGlow {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(2); }
+}
+
+@keyframes nebulaFlow {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.5); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Container */
+.container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Vídeo de Venda */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero video {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+}
+
+/* Nave Alienígena */
+.alien-ship {
+    position: absolute;
+    width: 150px; /* Largo para disco clássico */
+    height: 40px; /* Achatado, como nave de filme */
+    animation: shipFlight 7s infinite;
+    right: -150px;
+    top: 40%;
+    z-index: 100;
+    transform-origin: center;
+}
+
+.alien-ship::before {
+    content: '';
+    position: absolute;
+    width: 100%; /* 150px */
+    height: 100%; /* 40px */
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, #909090, #c0c0c0, #a0a0a0); /* Cinza metálico polido */
+    border-radius: 50% / 50%; /* Disco achatado perfeito */
+    border: 3px solid #b0b0b0; /* Borda metálica suave */
+    box-shadow: 
+        inset 0 0 20px rgba(255,255,255,0.7), /* Reflexo interno brilhante */
+        0 0 40px rgba(192,192,192,0.5), /* Brilho externo */
+        0 0 15px rgba(0,0,0,0.4); /* Sombra realista */
+}
+
+.alien-ship::after {
+    content: '';
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    top: -30%;
+    left: -30%;
+    background: radial-gradient(circle at 50% 50%, rgba(192,192,192,0.4) 0%, transparent 70%);
+    border-radius: 50% / 50%;
+    animation: glow 1.5s infinite;
+    z-index: -1;
+    filter: blur(10px); /* Halo forte */
+}
+
+.window {
+    position: absolute;
+    width: 12px;
+    height: 8px; /* Retângulos alinhados */
+    border-radius: 2px; /* Bordas suaves, não tortas */
+    box-shadow: 
+        0 0 25px currentColor, /* Brilho intenso */
+        0 0 50px currentColor; /* Efeito estelar ampliado */
+}
+
+.window-black-1 {
+    top: 10px;
+    left: 20px;
+    background: #000000; /* Preto */
+    animation: windowBlink 1s infinite;
+}
+
+.window-black-2 {
+    top: 10px;
+    left: 35px;
+    background: #000000;
+    animation: windowBlink 1.2s infinite;
+}
+
+.window-green-1 {
+    top: 10px;
+    left: 50px;
+    background: #00ff00; /* Verde */
+    animation: windowBlink 1s infinite;
+}
+
+.window-green-2 {
+    top: 10px;
+    left: 65px;
+    background: #00ff00;
+    animation: windowBlink 1.2s infinite;
+}
+
+.window-yellow-1 {
+    top: 10px;
+    left: 80px;
+    background: #ffff00; /* Amarelo */
+    animation: windowBlink 1s infinite;
+}
+
+.window-yellow-2 {
+    top: 10px;
+    left: 95px;
+    background: #ffff00;
+    animation: windowBlink 1.2s infinite;
+}
+
+.window-blue-1 {
+    top: 10px;
+    left: 110px;
+    background: #0000ff; /* Azul */
+    animation: windowBlink 1s infinite;
+}
+
+.window-blue-2 {
+    top: 10px;
+    left: 125px;
+    background: #0000ff;
+    animation: windowBlink 1.2s infinite;
+}
+
+.engine-glow {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, #00ccff 10%, rgba(0,204,255,0.7) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: enginePulse 0.8s infinite;
+    filter: blur(12px);
+    box-shadow: 0 0 60px rgba(0,204,255,1); /* Brilho motor ainda mais forte */
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #d0d0d0; /* Prateado brilhante */
+    border-radius: 50%;
+    animation: particleGlow 1s infinite;
+    box-shadow: 
+        0 0 25px #d0d0d0, /* Brilho prateado intenso */
+        0 0 50px #d0d0d0; /* Efeito estelar ampliado */
+}
+
+/* Animações */
+@keyframes shipFlight {
+    0% { transform: translateX(0) translateY(-100vh); opacity: 0; }
+    15% { transform: translateX(-500px) translateY(0); opacity: 1; } /* Desce em 1s */
+    20% { transform: translateX(-500px) translateY(-10px); }
+    25% { transform: translateX(-500px) translateY(0); }
+    85% { transform: translateX(-500px) translateY(0); opacity: 1; } /* Para por ~5s */
+    100% { transform: translateX(-500px) translateY(-100vh); opacity: 0; } /* Sobe em 1s */
+}
+
+@keyframes glow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes windowBlink {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes enginePulse {
+    0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}
+
+@keyframes particleGlow {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(20px) scale(1.5); opacity: 0.8; }
+    100% { transform: translateY(40px) scale(1); opacity: 0; }
+}
+
+/* Estilos Gerais */
+.book-cover {
+    width: 300px;
+    height: 450px;
+    margin: 30px auto;
+    background: #222 url('../assets/capa-livrov3.jpg.jpeg') center/cover no-repeat;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 255, 100, 0.3);
+}
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #00ff88, #00a3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.sales-copy {
+    font-size: 1.8em;
+    margin: 30px 0;
+    line-height: 1.5;
+    z-index: 50;
+}
+
+.blue-text { color: #00a3ff; }
+.white-text { color: white; }
+
+.price-btn {
+    background: linear-gradient(45deg, #00ff88, #00c3ff);
+    color: #000;
+    padding: 25px 60px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.8em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 30px 0;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 30px rgba(0, 255, 200, 0.3);
+    transition: transform 0.3s ease;
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.price-btn:hover {
+    animation: none;
+    transform: scale(1.05);
+}
+
+.pulse-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #00ff00;
+    color: #000;
+    text-decoration: none;
+    font-size: 1.5em;
+    border-radius: 5px;
+    margin-top: 20px;
+    animation: pulse 1.5s infinite;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.floating-button {
+    position: sticky;
+    bottom: 20px;
+    background: #00ffff;
+    color: #000;
+    z-index: 100;
+}
+
+.green { background: #00ff00; }
+.yellow { background: #ffff00; }
+
+@keyframes pulse {
+    0% { transform: scale(0.98); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(0.98); }
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+}
+
+.feature-item { padding: 20px; }
+
+.volume-section {
+    margin: 80px 0;
+    padding: 40px;
+    background: rgba(0, 163, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 200, 0.1);
+}
+
+.volume-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.volume-card {
+    padding: 25px;
+    background: rgba(0, 255, 136, 0.05);
+    border-radius: 15px;
+    border: 1px solid #00ff88;
+    transition: all 0.3s ease;
+}
+
+.volume-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+}
+
+.volume-cover {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 15px auto;
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+}
+
+.page-count {
+    font-size: 1.4em;
+    color: #00ff88;
+    margin: 15px 0;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.buy-all-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.faq-section {
+    margin: 60px 0;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+}
+
+.faq-item {
+    margin: 30px 0;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 255, 200, 0.1);
+}
+
+.faq-question {
+    color: #00a3ff;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.faq-answer {
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Temporizador */
+.timer {
+    margin: 20px 0;
+}
+
+.timer h3 {
+    color: #ffff00;
+}
+
+#countdown {
+    font-size: 2em;
+    color: #00ffff;
+}
+
+/* Contador de Vendas */
+.sales-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 163, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2em;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.sales-counter .counter {
+    color: #00ff88;
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 255, 200, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container { padding: 20px; }
+    h1 { font-size: 2em; }
+    .book-cover { width: 85%; height: 350px; }
+    .sales-copy { font-size: 1.2em; }
+    .price-btn {
+        padding: 15px 20px;
+        font-size: 1.3em;
+        max-width: 100%;
+    }
+    .pulse-button {
+        padding: 10px 15px;
+        font-size: 1.2em;
+        max-width: 100%;
+    }
+    .features { grid-template-columns: 1fr; padding: 20px; }
+    .volume-grid { grid-template-columns: 1fr; }
+    .volume-section { padding: 20px; margin: 40px 0; }
+    .volume-cover { width: 180px; height: 270px; }
+    .faq-section { padding: 20px; }
+    .alien-ship { display: none; }
+    .sales-counter { font-size: 1em; bottom: 10px; right: 10px; }
+    .timer h3 { font-size: 1.2em; }
+    #countdown { font-size: 1.5em; }
+    .sales-pitch h2 { font-size: 1.5em; }
+    .sales-pitch p { font-size: 1em; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 15px; }
+    h1 { font-size: 1.5em; }
+    .sales-copy { font-size: 1em; }
+    .price-btn {
+        padding: 10px 15px;
+        font-size: 1.1em;
+    }
+    .pulse-button {
+        padding: 8px 10px;
+        font-size: 1em;
+    }
+    .hero { padding: 20px 10px; }
+    .book-cover { width: 100%; height: 300px; }
+    .volume-cover { width: 150px; height: 225px; }
+    .timer h3 { font-size: 1em; }
+    #countdown { font-size: 1.2em; }
+}
+
+/* Adicionado no final */
+.video-title {
+    color: #fff;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Adicionado para a seção de copy e SEO */
+.sales-pitch {
+    text-align: center;
+    padding: 20px;
+    margin: 30px 0;
+    background: rgba(0, 163, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(0, 255, 200, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+}
+
+.sales-pitch h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #00a3ff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 163, 255, 0.5);
+    animation: pulse 2s infinite;
+}
+
+.sales-pitch p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Seção de Depoimentos */
+.testimonials-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.testimonial-item {
+    width: 100%;
+    height: 300px; /* Altura padrão para desktop */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.testimonial-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche o espaço */
+    object-position: top; /* Prioriza o topo da imagem */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.testimonial-img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo opcional para a garantia */
+.guarantee .testimonial-img {
+    border: 2px solid #00ff88; /* Destaque verde para a garantia */
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+    .testimonial-item {
+        height: 250px; /* Altura para tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-item {
+        height: 280px; /* Altura aumentada para celulares */
+    }
+}
